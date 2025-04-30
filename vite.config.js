@@ -1,5 +1,5 @@
 import { defineConfig } from "vite";
 
 export default defineConfig({
-  base: "./Sonic-Runner-TypeScript",
+  base: "https://jslegenddev.github.io/Sonic-Runner-TypeScript/",
 });
