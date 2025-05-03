@@ -62,7 +62,7 @@ k.scene("game", () => {
     k.destroy(gameControlsText);
   });
 
-  const bgPieceWidth = 1450;
+  const bgPieceWidth = 2880;
   const bgPieces = [
     k.add([k.sprite("chemical-bg"), k.pos(0, 0), k.opacity(0.8), k.scale(1.5)]),
     k.add([
@@ -73,9 +73,10 @@ k.scene("game", () => {
     ]),
   ];
 
+  const platformWidth = 2560;
   const platforms = [
     k.add([k.sprite("platforms"), k.pos(0, 450), k.scale(2)]),
-    k.add([k.sprite("platforms"), k.pos(384, 450), k.scale(2)]),
+    k.add([k.sprite("platforms"), k.pos(2560, 450), k.scale(2)]),
   ];
 
   const sonic = makeSonic(k.vec2(100, 100));
@@ -176,23 +177,23 @@ k.scene("game", () => {
 
   k.onUpdate(() => {
     if (bgPieces[1].pos.x < 0) {
-      bgPieces[0].moveTo(bgPieces[1].pos.x + bgPieceWidth * 2, 0);
+      bgPieces[0].moveTo(bgPieces[1].pos.x + bgPieceWidth, 0);
       const frontBgPiece = bgPieces.shift();
       // so typescript shuts up
       if (frontBgPiece) bgPieces.push(frontBgPiece);
     }
 
     bgPieces[0].move(-100, 0);
-    bgPieces[1].moveTo(bgPieces[0].pos.x + bgPieceWidth * 2, 0);
+    bgPieces[1].moveTo(bgPieces[0].pos.x + bgPieceWidth, 0);
 
     if (platforms[1].pos.x < 0) {
-      platforms[0].moveTo(platforms[1].pos.x + platforms[1].width * 2, 450);
+      platforms[0].moveTo(platforms[1].pos.x + platformWidth, 450);
       const frontPlatform = platforms.shift();
       if (frontPlatform) platforms.push(frontPlatform);
     }
 
     platforms[0].move(-gameSpeed, 0);
-    platforms[1].moveTo(platforms[0].pos.x + platforms[1].width * 2, 450);
+    platforms[1].moveTo(platforms[0].pos.x + platformWidth, 450);
   });
 });
 
