@@ -1,9 +1,9 @@
 import k from "./kaplayCtx";
 import { Vec2, GameObj } from "kaplay";
 
-export function makeSonic(position: Vec2) {
+export function makeZoomy(position: Vec2) {
   return k.add([
-    k.sprite("sonic", { anim: "run" }),
+    k.sprite("zoomy", { anim: "run" }),
     k.scale(3),
     k.area(),
     k.anchor("center"),
