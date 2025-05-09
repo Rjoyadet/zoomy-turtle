@@ -1,5 +1,5 @@
 import k from "./kaplayCtx";
-import { makeMotobug, makeRing, makeSonic } from "./entities";
+import { makeMotobug, makeRing, makeZoomy } from "./entities";
 import { GameObj } from "kaplay";
 
 k.loadSprite("chemical-bg", "graphics/chemical-bg.png");
@@ -79,11 +79,11 @@ k.scene("game", () => {
     k.add([k.sprite("platforms"), k.pos(2560, 450), k.scale(2)]),
   ];
 
-  const sonic = makeSonic(k.vec2(100, 100));
+  const zoomy = makeZoomy(k.vec2(100, 100));
   sonic.setControls();
   sonic.setEvents();
 
-  const ringCollectUI = sonic.add([
+  const ringCollectUI = Zoomy.add([
     k.text("", { font: "mania", size: 18 }),
     k.color(255, 255, 0),
     k.anchor("center"),
@@ -115,7 +115,7 @@ k.scene("game", () => {
 
   spawnRing();
 
-  sonic.onCollide("ring", (ring: GameObj) => {
+  zoomy.onCollide("ring", (ring: GameObj) => {
     k.play("ring", { volume: 0.5 });
     k.destroy(ring);
     score++;
@@ -147,13 +147,13 @@ k.scene("game", () => {
 
   spawnMotoBug();
 
-  sonic.onCollide("enemy", (enemy) => {
-    if (!sonic.isGrounded()) {
+  zoomy.onCollide("enemy", (enemy) => {
+    if (!zoomy.isGrounded()) {
       k.play("destroy", { volume: 0.5 });
       k.play("hyper-ring", { volume: 0.5 });
       k.destroy(enemy);
-      sonic.play("jump");
-      sonic.jump();
+      zoomy.play("jump");
+      zoomy.jump();
       scoreMultiplier += 1;
       score += 10 * scoreMultiplier;
       scoreText.text = `SCORE : ${score}`;
@@ -171,7 +171,7 @@ k.scene("game", () => {
     k.go("game-over");
   });
 
-  sonic.onGround(() => {
+  zoomy.onGround(() => {
     scoreMultiplier = 0;
   });
 
