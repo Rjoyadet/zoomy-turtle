@@ -4,7 +4,7 @@ import { GameObj } from "kaplay";
 
 k.loadSprite("chemical-bg", "graphics/chemical-bg.png");
 k.loadSprite("platforms", "graphics/platforms.png");
-k.loadSprite("sonic", "graphics/sonic.png", {
+k.loadSprite("zoomy", "graphics/zoomy.png", {
   sliceX: 8,
   sliceY: 2,
   anims: {
